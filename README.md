@@ -13,4 +13,4 @@ Usage Notes
 
 - Click the **Deploy to Salesforce** button above to deploy them to your org. 
 - Activate each Flow manually once deployed.
-- Use the **sampleutterances.txt** and **intentschema.json** files when [configuring your Alex Skill](https://github.com/financialforcedev/alexa-salesforce-flow-skill/wiki).
+- Use the **sampleutterances.txt** and **intentschema.json** files when [configuring your Alex Skill](https://github.com/financialforcedev/alexa-salesforce-flow-skill/wiki/Setup-and-Configuration).
