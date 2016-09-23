@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Ask_for_Comment</name>
+        <label>Ask for Comment</label>
+        <locationX>475</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>Alexa_Ask</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Please tell me the description for this request</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Ask_for_Duration</name>
+        <label>Ask for Duration</label>
+        <locationX>416</locationX>
+        <locationY>234</locationY>
+        <assignmentItems>
+            <assignToReference>Alexa_Ask</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>How many days are you taking?</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Ask_for_Start_Date</name>
+        <label>Ask for Start Date</label>
+        <locationX>344</locationX>
+        <locationY>121</locationY>
+        <assignmentItems>
+            <assignToReference>Alexa_Ask</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>when does your vacation start?</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Create_Request_Confirm_Message</name>
+        <label>Create Request Confirm Message</label>
+        <locationX>860</locationX>
+        <locationY>562</locationY>
+        <assignmentItems>
+            <assignToReference>Alexa_Tell</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Your vacation request has been submitted for approval</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Has_Comment_Spoken</name>
+        <label>Has Comment Spoken</label>
+        <locationX>592</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Ask_for_Comment</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Ask for Comment</defaultConnectorLabel>
+        <rules>
+            <name>Comment_Spoken</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Alexa_Slot_Comment</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Read_Current_User</targetReference>
+            </connector>
+            <label>Comment Spoken</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Has_Duration_Spoken</name>
+        <label>Has Duration Spoken</label>
+        <locationX>546</locationX>
+        <locationY>126</locationY>
+        <defaultConnector>
+            <targetReference>Ask_for_Duration</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Ask for Duration</defaultConnectorLabel>
+        <rules>
+            <name>Duration_Spoken</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Alexa_Slot_Duration</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Has_Comment_Spoken</targetReference>
+            </connector>
+            <label>Duration Spoken</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Has_Start_Date</name>
+        <label>Has Start Date</label>
+        <locationX>469</locationX>
+        <locationY>17</locationY>
+        <defaultConnector>
+            <targetReference>Ask_for_Start_Date</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>Start_Date_Spoken</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Alexa_Slot_Start</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Has_Duration_Spoken</targetReference>
+            </connector>
+            <label>Start Date Spoken</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>CurrentUser</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <interviewLabel>Vacation Request {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Vacation Request</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Absence_Request_Record</name>
+        <label>Create Absence Request Record</label>
+        <locationX>767</locationX>
+        <locationY>456</locationY>
+        <assignRecordIdToReference>Absence_Request_Id</assignRecordIdToReference>
+        <connector>
+            <targetReference>Create_Request_Confirm_Message</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Notes__c</field>
+            <value>
+                <elementReference>Alexa_Slot_Comment</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>User__c</field>
+            <value>
+                <elementReference>UserId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Absence_Request__c</object>
+    </recordCreates>
+    <recordLookups>
+        <name>Read_Current_User</name>
+        <label>Read Current User</label>
+        <locationX>687</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Absence_Request_Record</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>CurrentUser</elementReference>
+            </value>
+        </filters>
+        <object>User</object>
+        <outputAssignments>
+            <assignToReference>UserId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <startElementReference>Has_Start_Date</startElementReference>
+    <variables>
+        <name>Absence_Request_Id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Alexa_Ask</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Alexa_Slot_Comment</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Alexa_Slot_Duration</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Alexa_Slot_Start</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Alexa_Tell</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Approval_Submission_Status</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>UserId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

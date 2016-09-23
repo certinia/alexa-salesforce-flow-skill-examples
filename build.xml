@@ -1,0 +1,32 @@
+<project name="Alex Flow Examples" basedir="." xmlns:sf="antlib:com.salesforce">
+
+    <property file="build.properties"/>
+    <property environment="env"/>
+
+	<typedef 
+		uri="antlib:com.salesforce" 
+		resource="com/salesforce/antlib.xml" 
+		classpath="${basedir}/bin/ant-salesforce.jar"/>
+
+    <target name="retrieve">
+      <sf:retrieve 
+      	apiVersion="38.0"
+      	username="${sf.username}" 
+      	password="${sf.password}"
+      	serverurl="${sf.serverurl}"
+      	maxPoll="${sf.maxPoll}"
+      	retrieveTarget="${basedir}/src"
+      	unpackaged="${basedir}/src/package.xml"/>
+    </target>
+
+    <target name="deploy">
+      <sf:deploy 
+      	username="${sf.username}"
+      	password="${sf.password}"
+      	serverurl="${sf.serverurl}"
+      	maxPoll="${sf.maxPoll}"
+      	deployRoot="${basedir}/src"
+      	rollbackOnError="true"/>
+    </target>
+    
+</project>

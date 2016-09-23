@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Handle</name>
+        <label>Handle</label>
+        <locationX>411</locationX>
+        <locationY>167</locationY>
+        <assignmentItems>
+            <assignToReference>Alexa_Tell</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Your date is {!Alexa_Slot_MyDate}</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <interviewLabel>EchoDate {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>EchoDate</label>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Handle</startElementReference>
+    <variables>
+        <name>Alexa_Slot_MyDate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Alexa_Tell</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>
