@@ -6,7 +6,7 @@ Flow Examples for FinancialForce Amazon Echo Skill
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/src/main/webapp/resources/img/deploy.png">
 </a>
 
-Sample Flows for use with the [FinancialForce Amazon Echo Skill for Salesforce Flow](https://github.com/financialforcedev/alexa-salesforce-flow-skill). 
+Sample Flows for use with the [FinancialForce Amazon Echo Skill for Salesforce Flow](https://github.com/financialforcedev/alexa-salesforce-flow-skill/wiki/Setup-and-Configuration#preparing-the-nodejs-code). 
 
 Usage Notes
 -----------
