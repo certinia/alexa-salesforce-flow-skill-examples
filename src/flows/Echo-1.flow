@@ -9,7 +9,7 @@
             <assignToReference>Alexa_Tell</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Hello {!Alexa_Slot_Name} called from Alex!</stringValue>
+                <stringValue>Hello {!Alexa_Slot_Name} from Salesforce Flow</stringValue>
             </value>
         </assignmentItems>
     </assignments>

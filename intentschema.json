@@ -1,0 +1,57 @@
+{
+  "intents": [
+    {
+      "intent": "Echo",
+      "slots": [
+        {
+          "name": "Name",
+          "type": "LITERAL"
+        }
+      ]
+    },
+    {
+      "intent": "EchoDate",
+      "slots": [
+        {
+          "name": "MyDate",
+          "type": "AMAZON.DATE"
+        }
+      ]
+    },
+    {
+      "intent": "EchoNumber",
+      "slots": [
+        {
+          "name": "MyNumber",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "Conversation",
+      "slots": [
+        {
+          "name": "Color",
+          "type": "LITERAL"
+        },
+        {
+          "name": "Number",
+          "type": "NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "CreateLead",
+      "slots": [
+        {
+          "name": "LeadName",
+          "type": "LITERAL"
+        },
+        {
+          "name": "CompanyName",
+          "type": "LITERAL"
+        }
+      ]
+    }
+  ]
+ }

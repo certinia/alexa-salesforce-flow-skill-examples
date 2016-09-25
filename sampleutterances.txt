@@ -1,0 +1,17 @@
+Echo My name is {Andrew|Name}
+Echo My name is {Sarah|Name}
+EchoDate My date is {MyDate}
+EchoNumber My number is {MyNumber}
+Conversation About favourite things
+Conversation My favourite color is {Red|Color}
+Conversation My favourite color is {Green|Color}
+Conversation My favourite color is {Blue|Color}
+Conversation My favourite number is {Number}
+CreateLead To Create a Lead
+CreateLead Lead name is {Fred Blogs|LeadName}
+CreateLead Lead name is {Andrew Fawcett|LeadName}
+CreateLead Lead name is {Sarah Fawcett|LeadName}
+CreateLead Lead name is {Kevin Roberts|LeadName}
+CreateLead Lead company name is {FinancialForce|CompanyName}
+CreateLead Lead company name is {SalesforceForce|CompanyName}
+CreateLead Lead company name is {Lego|CompanyName}
