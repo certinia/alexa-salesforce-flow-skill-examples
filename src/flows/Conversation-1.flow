@@ -103,7 +103,7 @@
     </variables>
     <variables>
         <name>Alexa_Slot_Number</name>
-        <dataType>String</dataType>
+        <dataType>Number</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
