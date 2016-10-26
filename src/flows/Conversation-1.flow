@@ -107,6 +107,7 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
+        <scale>0</scale>
     </variables>
     <variables>
         <name>Alexa_Tell</name>
