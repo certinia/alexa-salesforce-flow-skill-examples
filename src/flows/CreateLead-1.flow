@@ -32,7 +32,7 @@
         <locationX>400</locationX>
         <locationY>411</locationY>
         <assignmentItems>
-            <assignToReference>Alexa_Say</assignToReference>
+            <assignToReference>Alexa_Tell</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>You Lead has now been created.</stringValue>
@@ -133,7 +133,7 @@
         <isOutput>true</isOutput>
     </variables>
     <variables>
-        <name>Alexa_Say</name>
+        <name>Alexa_Tell</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
